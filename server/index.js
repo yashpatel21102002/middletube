@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const mongoose = require("mongoose")
+const authRouter = require("./routes/auth")
+
+app.use("/auth",authRouter);
 
 mongoose.connect("mongodb+srv://admin:admin@cluster0.v5hrfic.mongodb.net/?retryWrites=true&w=majority").then(
     console.log("connected to db")

@@ -6,16 +6,8 @@ const LoginPage: React.FC = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const handleLogin = () => {
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
+    window.location.replace("http://localhost:8080/auth/");
 
-    if (!email || !password) {
-      alert('Please enter both email and password.');
-      return;
-    }
-    
-    console.log('Email:', email);
-    console.log('Password:', password);
   };
 
   return (
