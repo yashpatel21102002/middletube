@@ -1,24 +1,24 @@
-import mongoose from 'mongoose'
-
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
         required : true,
     },
-    email:{
+    googleId:{
         type:String,
-        unique:true,
-        required:true,
+        required: true,
+        unique:true
     },
-    contact :{
-        type:Number,
-        unique:true,
-        required:true,
+    accessKey: {
+        type: String,
+        unique: true,
+    },
+    email: {
+        type: email
     },
     password:{
         type:String,
-        required:true,
     }
 
 },{timestamps:true},{collection:"Users"})
