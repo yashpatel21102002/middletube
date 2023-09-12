@@ -5,23 +5,22 @@ const userSchema = new mongoose.Schema({
         type:String,
         required : true,
     },
-    googleId:{
+    accessToken:{
         type:String,
         required: true,
         unique:true
     },
-    accessKey: {
+    refreshToken: {
         type: String,
         unique: true,
     },
     email: {
-        type: email
+        type: String,
+        unique:true,
     },
-    password:{
-        type:String,
-    }
+   
 
 },{timestamps:true},{collection:"Users"})
 
 const User = mongoose.model("User",userSchema);
-export default User;
+module.exports = User;

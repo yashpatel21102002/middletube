@@ -1,5 +1,6 @@
 const express = require('express');
 const { google } = require('googleapis');
+const { default: User } = require('../models/User');
 const router = express.Router();
 
 
