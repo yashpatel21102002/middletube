@@ -1,5 +1,6 @@
 const express = require('express');
 const { google } = require('googleapis');
+const {people} = require('googleapis')
 const { default: User } = require('../models/User');
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const CLIENT_ID = '1056405202495-3044o1mkctk2i1inil4fr2q57ohh40iv.apps.googleuse
 const CLIENT_SECRET = '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';
 const REDIRECT_URI = 'http://localhost:8080/auth/callback';
 const SCOPES = [
-  'https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/youtube.channel-memberships.creator','https://www.googleapis.com/auth/youtube.force-ssl','https://www.googleapis.com/auth/youtube.readonly','https://www.googleapis.com/auth/youtube.upload','https://www.googleapis.com/auth/youtubepartner','https://www.googleapis.com/auth/youtubepartner-channel-audit'
+  'https://www.googleapis.com/auth/youtube','https://www.googleapis.com/auth/youtube.channel-memberships.creator','https://www.googleapis.com/auth/youtube.force-ssl','https://www.googleapis.com/auth/youtube.readonly','https://www.googleapis.com/auth/youtube.upload','https://www.googleapis.com/auth/youtubepartner','https://www.googleapis.com/auth/youtubepartner-channel-audit','https://people.googleapis.com/v1/people/me/addresses'
 ];
 
 const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -30,6 +31,9 @@ router.get('/callback', async (req, res) => {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
     console.log('Successfully authenticated.');
+    const data = oauth2Client.
+    console.log(data);
+    // res.send(data);
     res.redirect("http://localhost:3000")
 
     // // You can now use the authenticated `oauth2Client` to make YouTube API requests
@@ -45,7 +49,7 @@ router.get('/callback', async (req, res) => {
 
     // res.send('Authentication successful. You can now make YouTube API requests.');
   } catch (error) {
-    console.error('Authentication error:', error);
+    console.log('Authentication error:', error);
     res.send('Authentication failed.');
   }
 });
